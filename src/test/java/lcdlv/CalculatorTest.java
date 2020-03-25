@@ -37,7 +37,7 @@ public class CalculatorTest {
 
 
     @Test
-    void aa() {
+    void returnsAnExpressionOfOneWhenCalculatingAdditionBetweenExpressionOneAndZero() {
         Operand op1 = new Operand(1);
         Operand op2 = new Operand(0);
         Expression expression = new Expression(op1, op2, Operator.ADD);
