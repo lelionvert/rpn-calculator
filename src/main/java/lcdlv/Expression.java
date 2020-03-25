@@ -59,4 +59,13 @@ public class Expression {
     public int multiply() {
         return firstOperand.multiply(secondOperand);
     }
+
+    public Expression calculate() {
+        if (typeOf(Operator.ADD)) {
+            return new Expression(add());
+        } else if (typeOf(Operator.MULTIPLY)) {
+            return new Expression(multiply());
+        }
+        return this;
+    }
 }

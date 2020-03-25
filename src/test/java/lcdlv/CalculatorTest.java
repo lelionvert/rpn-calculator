@@ -25,9 +25,8 @@ public class CalculatorTest {
     @ValueSource(ints = {1, 2})
     public void returnsSameExpressionWhenCalculatingWithOnlyOneExpression(int value) {
         Expression uniqueExpression = new Expression(value);
-        RPNCalculator rpnCalculator = new RPNCalculator();
 
-        Expression result = rpnCalculator.calculate(uniqueExpression);
+        Expression result = uniqueExpression.calculate();
 
         assertThat(result).isEqualTo(uniqueExpression);
     }
@@ -40,9 +39,7 @@ public class CalculatorTest {
 
         Expression expression = new Expression(firstOperand, secondOperand, Operator.ADD);
 
-        RPNCalculator rpnCalculator = new RPNCalculator();
-
-        Expression result = rpnCalculator.calculate(expression);
+        Expression result = expression.calculate();
 
         Expression expectedExpression = new Expression(expectedResult);
         assertThat(result).isEqualTo(expectedExpression);
@@ -51,14 +48,13 @@ public class CalculatorTest {
     @Test
     void returnsNewExpressionWhenAddingOneExpressionAndOneOperand() {
         // 1 3 + 1 + => (1 + 3) + 1 = 5
-        RPNCalculator rpnCalculator = new RPNCalculator();
         Expression expectedExpression = new Expression(5);
 
         Expression firstOperand = new Expression(new Operand(1), new Operand(3), Operator.ADD);
         Operand secondOperand = new Operand(1);
         Expression expression = new Expression(firstOperand, new Expression(new Operand(0), secondOperand, ADD), Operator.ADD);
 
-        Expression result = rpnCalculator.calculate(expression);
+        Expression result = expression.calculate();
 
         assertThat(result).isEqualTo(expectedExpression);
     }
@@ -67,14 +63,13 @@ public class CalculatorTest {
     @Test
     void returnsNewExpressionWhenAddingOneOperandAndOneExpression() {
 
-        RPNCalculator rpnCalculator = new RPNCalculator();
         Expression expectedExpression = new Expression(5);
 
         Operand firstOperand = new Operand(1);
         Expression secondOperand = new Expression(new Operand(1), new Operand(3), Operator.ADD);
         Expression expression = new Expression(new Expression(firstOperand, new Operand(0), ADD), secondOperand, Operator.ADD);
 
-        Expression result = rpnCalculator.calculate(expression);
+        Expression result = expression.calculate();
 
         assertThat(result).isEqualTo(expectedExpression);
     }
@@ -82,14 +77,13 @@ public class CalculatorTest {
     // 1 2 + 3 4 + + => 3 7 + => 10
     @Test
     void returnsNewExpressionWhenAddingTwoExpressions(){
-        RPNCalculator rpnCalculator = new RPNCalculator();
         Expression expectedExpression = new Expression(10);
 
         Expression firstOperand = new Expression(new Operand(1), new Operand(2), Operator.ADD);
         Expression secondOperand = new Expression(new Operand(3), new Operand(4), Operator.ADD);
         Expression expression = new Expression(firstOperand, secondOperand, Operator.ADD);
 
-        Expression result = rpnCalculator.calculate(expression);
+        Expression result = expression.calculate();
 
         assertThat(result).isEqualTo(expectedExpression);
     }
@@ -101,14 +95,13 @@ public class CalculatorTest {
     void returnNewExpressionWhenAddingSeveralExpressions() {
 
         Expression expectedExpression = new Expression(12);
-        RPNCalculator rpnCalculator = new RPNCalculator();
         Expression e1 = new Expression(new Operand(1), new Operand(2), ADD);
         Expression firstExpression = new Expression(new Expression(new Operand(4), new Operand(0), ADD), e1, ADD);
 
         Expression secondExpression = new Expression(new Operand(3), new Operand(2), ADD);
         Expression expression = new Expression(firstExpression, secondExpression, ADD);
 
-        Expression result = rpnCalculator.calculate(expression);
+        Expression result = expression.calculate();
         assertThat(result).isEqualTo(expectedExpression);
     }
 
@@ -127,8 +120,7 @@ public class CalculatorTest {
         Expression expression = new Expression(new Operand(1),new Operand(1),Operator.MULTIPLY);
         Expression expectedExpression = new Expression(1);
 
-        RPNCalculator rpnCalculator = new RPNCalculator();
-        Expression result = rpnCalculator.calculate(expression);
+        Expression result = expression.calculate();
 
         assertThat(result).isEqualTo(expectedExpression);
     }
@@ -138,8 +130,7 @@ public class CalculatorTest {
         Expression expression = new Expression(new Operand(2),new Operand(1),Operator.MULTIPLY);
         Expression expectedExpression = new Expression(2);
 
-        RPNCalculator rpnCalculator = new RPNCalculator();
-        Expression result = rpnCalculator.calculate(expression);
+        Expression result = expression.calculate();
 
         assertThat(result).isEqualTo(expectedExpression);
     }
