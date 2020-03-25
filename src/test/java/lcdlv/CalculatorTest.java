@@ -20,7 +20,7 @@ public class CalculatorTest {
 
 
     @Test
-    void firstAcceptanceTest() {
+    void returnExpressionOfOneWhenCalculateWithOnlyTheExpressionOfOne() {
         Expression uniqueExpression = new Expression(1);
         RPNCalculator rpnCalculator = new RPNCalculator();
 
