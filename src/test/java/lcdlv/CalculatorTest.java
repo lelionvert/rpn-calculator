@@ -49,4 +49,18 @@ public class CalculatorTest {
         Expression expectedExpression = new Expression(1);
         assertThat(result).isEqualTo(expectedExpression);
     }
+
+    @Test
+    void returnsAnExpressionOfOneWhenCalculatingAdditionBetweenExpressionOneAnd() {
+        Operand op1 = new Operand(1);
+        Operand op2 = new Operand(2);
+        Expression expression = new Expression(op1, op2, Operator.ADD);
+
+        RPNCalculator rpn = new RPNCalculator();
+
+        Expression result = rpn.calculate(expression);
+
+        Expression expectedExpression = new Expression(3);
+        assertThat(result).isEqualTo(expectedExpression);
+    }
 }

@@ -22,6 +22,12 @@ public class Expression {
         value = 0;
     }
 
+    public Expression add() {
+        int resultAddition = op1.add(op2);
+
+        return new Expression(resultAddition);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,4 +44,5 @@ public class Expression {
     public boolean typeOf(Operator add) {
         return add.equals(this.operator);
     }
+
 }
