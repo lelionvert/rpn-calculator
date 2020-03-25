@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static lcdlv.Operator.ADD;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {
@@ -71,7 +72,7 @@ public class CalculatorTest {
 
         Operand firstOperand = new Operand(1);
         Expression secondOperand = new Expression(new Operand(1), new Operand(3), Operator.ADD);
-        Expression expression = new Expression(firstOperand, secondOperand, Operator.ADD);
+        Expression expression = new Expression(new Expression(firstOperand, new Operand(0), ADD), secondOperand, Operator.ADD);
 
         Expression result = rpnCalculator.calculate(expression);
 
