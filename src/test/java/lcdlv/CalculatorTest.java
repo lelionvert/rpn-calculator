@@ -123,10 +123,20 @@ public class CalculatorTest {
 
 
     @Test
-    void name() {
-
+    void returnNewExpressionWhenHavingExpressionWithTwoOperandsToOne() {
         Expression expression = new Expression(new Operand(1),new Operand(1),Operator.MULTIPLY);
         Expression expectedExpression = new Expression(1);
+
+        RPNCalculator rpnCalculator = new RPNCalculator();
+        Expression result = rpnCalculator.calculate(expression);
+
+        assertThat(result).isEqualTo(expectedExpression);
+    }
+
+    @Test
+    void returnNewExpressionWhenHavingExpressionWithOperandOneAndOperandTwo(){
+        Expression expression = new Expression(new Operand(2),new Operand(1),Operator.MULTIPLY);
+        Expression expectedExpression = new Expression(2);
 
         RPNCalculator rpnCalculator = new RPNCalculator();
         Expression result = rpnCalculator.calculate(expression);

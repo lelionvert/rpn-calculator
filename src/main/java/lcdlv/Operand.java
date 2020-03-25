@@ -26,4 +26,10 @@ public class Operand {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    public int multiply(Operand otherOperand) {
+        if (otherOperand.value == 1)
+            return this.value;
+        return 1;
+    }
 }

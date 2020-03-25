@@ -57,6 +57,6 @@ public class Expression {
     }
 
     public int multiply() {
-        return 1;
+        return firstOperand.multiply(secondOperand);
     }
 }
