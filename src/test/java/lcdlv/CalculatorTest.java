@@ -15,6 +15,8 @@ public class CalculatorTest {
 
     // EXEMPLES :
     // 1 => 1
+    // 1 0 + =>  (1 + 0) = 1
+    // 0 1 + =>  ( 0 + 1) = 1
     // 1 2 + => (1 + 2) = 3
     // 20 5 / => (20 / 5) = 4
     // 4 2 + 3 - => (4 + 2) - 3 = 3
@@ -34,5 +36,17 @@ public class CalculatorTest {
 
 
 
+    @Test
+    void aa() {
+        Operand op1 = new Operand(1);
+        Operand op2 = new Operand(0);
+        Expression expression = new Expression(op1, op2, Operator.ADD);
 
+        RPNCalculator rpn = new RPNCalculator();
+
+        Expression result = rpn.calculate(expression);
+
+        Expression expectedExpression = new Expression(1);
+        assertThat(result).isEqualTo(expectedExpression);
+    }
 }
