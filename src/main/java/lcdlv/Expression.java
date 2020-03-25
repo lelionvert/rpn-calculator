@@ -19,6 +19,12 @@ public class Expression {
 
     }
 
+    public Expression(Expression firstOperand, Operand secondOperand, Operator add) {
+        this.firstOperand = new Operand(firstOperand.firstOperand.add(firstOperand.secondOperand));
+        this.secondOperand = secondOperand;
+        operator = add;
+    }
+
     public Expression add() {
         int resultAddition = firstOperand.add(secondOperand);
 
