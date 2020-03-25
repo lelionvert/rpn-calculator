@@ -23,7 +23,7 @@ public class CalculatorTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2})
     public void returnsSameExpressionWhenCalculatingWithOnlyOneExpression(int value) {
-        Expression uniqueExpression = new Expression(value);
+        Expression uniqueExpression = new Expression(new Operand(value));
         RPNCalculator rpnCalculator = new RPNCalculator();
 
         Expression result = rpnCalculator.calculate(uniqueExpression);
@@ -43,15 +43,15 @@ public class CalculatorTest {
 
         Expression result = rpnCalculator.calculate(expression);
 
-        Expression expectedExpression = new Expression(expectedResult);
+        Expression expectedExpression = new Expression(new Operand(expectedResult));
         assertThat(result).isEqualTo(expectedExpression);
     }
 
     @Test
-    void anotherTest() {
+    void returnsNewExpressionWhenAddingOneExpressionAndOneOperand() {
         // 1 3 + 1 + => (1 + 3) + 1 = 5
         RPNCalculator rpnCalculator = new RPNCalculator();
-        Expression expectedExpression = new Expression(5);
+        Expression expectedExpression = new Expression(new Operand(5));
 
         Expression firstOperand = new Expression(new Operand(1), new Operand(3), Operator.ADD);
         Operand secondOperand = new Operand(1);
