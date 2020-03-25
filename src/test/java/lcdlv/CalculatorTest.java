@@ -64,13 +64,28 @@ public class CalculatorTest {
 
     // 1 1 3 + + => 1 4 + => 5
     @Test
-    void aaaaaaaaaaaa() {
+    void returnsNewExpressionWhenAddingOneOperandAndOneExpression() {
 
         RPNCalculator rpnCalculator = new RPNCalculator();
         Expression expectedExpression = new Expression(5);
 
         Operand firstOperand = new Operand(1);
         Expression secondOperand = new Expression(new Operand(1), new Operand(3), Operator.ADD);
+        Expression expression = new Expression(firstOperand, secondOperand, Operator.ADD);
+
+        Expression result = rpnCalculator.calculate(expression);
+
+        assertThat(result).isEqualTo(expectedExpression);
+    }
+
+    // 1 2 + 3 4 + + => 3 7 + => 10
+    @Test
+    void returnsNewExpressionWhenAddingTwoExpressions(){
+        RPNCalculator rpnCalculator = new RPNCalculator();
+        Expression expectedExpression = new Expression(10);
+
+        Expression firstOperand = new Expression(new Operand(1), new Operand(2), Operator.ADD);
+        Expression secondOperand = new Expression(new Operand(3), new Operand(4), Operator.ADD);
         Expression expression = new Expression(firstOperand, secondOperand, Operator.ADD);
 
         Expression result = rpnCalculator.calculate(expression);
