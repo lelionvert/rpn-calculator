@@ -24,10 +24,10 @@ public class Expression {
         this.operator = operator;
     }
 
-    public Expression(Expression e, Expression expression, Operator operator) {
+    public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
 
-        this.firstOperand = new Operand(e.firstOperand.add(e.secondOperand));
-        this.secondOperand = new Operand(expression.firstOperand.add(expression.secondOperand));
+        this.firstOperand = new Operand(firstExpression.firstOperand.add(firstExpression.secondOperand));
+        this.secondOperand = new Operand(secondExpression.firstOperand.add(secondExpression.secondOperand));
         this.operator = operator;
 
     }
