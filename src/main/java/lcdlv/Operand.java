@@ -1,5 +1,7 @@
 package lcdlv;
 
+import java.util.Objects;
+
 public class Operand {
     private int value;
 
@@ -10,5 +12,18 @@ public class Operand {
 
     public int add(Operand op2) {
         return value + op2.value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Operand operand = (Operand) o;
+        return value == operand.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

@@ -4,14 +4,12 @@ import java.util.Objects;
 
 public class Expression {
 
-    private final int value;
     private Operand firstOperand;
     private Operand secondOperand;
     private Operator operator;
 
     public Expression(int expression) {
-
-        this.value = expression;
+        this.firstOperand = new Operand(expression);
     }
 
     public Expression(Operand firstOperand, Operand secondOperand, Operator operator) {
@@ -19,7 +17,6 @@ public class Expression {
         this.secondOperand = secondOperand;
         this.operator = operator;
 
-        value = 0;
     }
 
     public Expression add() {
@@ -28,21 +25,32 @@ public class Expression {
         return new Expression(resultAddition);
     }
 
+    public boolean typeOf(Operator add) {
+        return add.equals(this.operator);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Expression that = (Expression) o;
-        return value == that.value;
+        return Objects.equals(firstOperand, that.firstOperand) &&
+                Objects.equals(secondOperand, that.secondOperand) &&
+                operator == that.operator;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(firstOperand, secondOperand, operator);
     }
 
-    public boolean typeOf(Operator add) {
-        return add.equals(this.operator);
-    }
 
+    @Override
+    public String toString() {
+        return "Expression{" +
+                "firstOperand=" + firstOperand +
+                ", secondOperand=" + secondOperand +
+                ", operator=" + operator +
+                '}';
+    }
 }
