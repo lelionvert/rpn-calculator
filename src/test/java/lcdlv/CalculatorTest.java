@@ -76,7 +76,7 @@ public class CalculatorTest {
 
     // 1 2 + 3 4 + + => 3 7 + => 10
     @Test
-    void returnsNewExpressionWhenAddingTwoExpressions(){
+    void returnsNewExpressionWhenAddingTwoExpressions() {
         Expression expectedExpression = new Expression(10);
 
         Expression firstOperand = new Expression(new Operand(1), new Operand(2), Operator.ADD);
@@ -105,84 +105,16 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(expectedExpression);
     }
 
-
-    // 1 1 x --> 1
-    // 2 1 x --> 2
-    // 1 2 x --> 2
-    // 0 1 x --> 0
-    // 1 0 x --> 0
-    // 2 3 x --> 6
     // 2 3 x 2 x --> 12
 
-
-    @Test
-    void returnNewExpressionWhenHavingExpressionWithTwoOperandsToOne() {
-        Expression expression = new Expression(new Operand(1),new Operand(1),Operator.MULTIPLY);
-        Expression expectedExpression = new Expression(1);
-
-        Expression result = expression.calculate();
-
-        assertThat(result).isEqualTo(expectedExpression);
-    }
-
-    @Test
-    void returnNewExpressionWhenHavingExpressionWithOperandOneAndOperandTwo(){
-        Expression expression = new Expression(new Operand(2),new Operand(1),Operator.MULTIPLY);
-        Expression expectedExpression = new Expression(2);
+    @ParameterizedTest
+    @CsvSource({"1,1,1", "2,1,2", "1,2,2", "0,2,0", "2,0,0", "2,3,6", "3,3,9"})
+    public void returnAnExpressionWhenMultiplyingTwoOperands(int firstValue, int secondValue, int expectedValue) {
+        Expression expression = new Expression(new Operand(firstValue), new Operand(secondValue), Operator.MULTIPLY);
+        Expression expectedExpression = new Expression(expectedValue);
 
         Expression result = expression.calculate();
 
         assertThat(result).isEqualTo(expectedExpression);
-    }
-
-    @Test
-    void returnNewExpressionWhenHavingExpressionWithOperandTwoAndOperandOne() {
-        Expression expression = new Expression(new Operand(1),new Operand(2),Operator.MULTIPLY);
-        Expression expectedExpression = new Expression(2);
-
-        Expression result = expression.calculate();
-
-        assertThat(result).isEqualTo(expectedExpression);
-    }
-
-    @Test
-    void returnZeroWhenMultiplyingAndOneOfTheOperandIsZero(){
-        Expression expression = new Expression(new Operand(0),new Operand(2),Operator.MULTIPLY);
-        Expression expectedExpression = new Expression(0);
-
-        Expression result = expression.calculate();
-
-        assertThat(result).isEqualTo(expectedExpression);
-    }
-
-    @Test
-    void returnZeroWhenMultiplyingAndTheSecondOperandIsZero() {
-        Expression expression = new Expression(new Operand(2),new Operand(0),Operator.MULTIPLY);
-        Expression expectedExpression = new Expression(0);
-
-        Expression result = expression.calculate();
-
-        assertThat(result).isEqualTo(expectedExpression);
-    }
-
-    @Test
-    public void returnsNewExpressionOfSixWhenMultiplyingTwoOperandsOfTwoAndThree(){
-        Expression expression = new Expression(new Operand(2),new Operand(3),Operator.MULTIPLY);
-        Expression expectedExpression = new Expression(6);
-
-        Expression result = expression.calculate();
-
-        assertThat(result).isEqualTo(expectedExpression);
-    }
-
-    @Test
-    void returnNewExpressionOfNineWhenMultiplyingTwoOperandsOfThreeAndThree() {
-        Expression expression = new Expression(new Operand(3),new Operand(3),Operator.MULTIPLY);
-        Expression expectedExpression = new Expression(9);
-
-        Expression result = expression.calculate();
-
-        assertThat(result).isEqualTo(expectedExpression);
-
     }
 }
