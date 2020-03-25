@@ -8,6 +8,7 @@ public class Expression {
     private Operand secondOperand;
     private Operator operator;
 
+
     public Expression(int value) {
         this.firstOperand = new Operand(value);
     }
@@ -19,11 +20,7 @@ public class Expression {
     }
 
     public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
-
-        this.firstOperand = new Operand(firstExpression.firstOperand.add(firstExpression.secondOperand));
-        this.secondOperand = new Operand(secondExpression.firstOperand.add(secondExpression.secondOperand));
-        this.operator = operator;
-
+        this(new Operand(firstExpression.add()), new Operand(secondExpression.add()), operator);
     }
 
     public int add() {
