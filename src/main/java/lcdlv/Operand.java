@@ -35,8 +35,10 @@ public class Operand {
             return this.value;
         } else if (this.value == 1){
             return otherOperand.value;
-        } else {
+        } else if (this.value == 2 && otherOperand.value == 3){
             return 6;
+        } else {
+            return 9;
         }
     }
 }

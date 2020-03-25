@@ -166,12 +166,23 @@ public class CalculatorTest {
     }
 
     @Test
-    public void deuxFoisTrois(){
+    public void returnsNewExpressionOfSixWhenMultiplyingTwoOperandsOfTwoAndThree(){
         Expression expression = new Expression(new Operand(2),new Operand(3),Operator.MULTIPLY);
         Expression expectedExpression = new Expression(6);
 
         Expression result = expression.calculate();
 
         assertThat(result).isEqualTo(expectedExpression);
+    }
+
+    @Test
+    void anotherTest() {
+        Expression expression = new Expression(new Operand(3),new Operand(3),Operator.MULTIPLY);
+        Expression expectedExpression = new Expression(9);
+
+        Expression result = expression.calculate();
+
+        assertThat(result).isEqualTo(expectedExpression);
+
     }
 }
