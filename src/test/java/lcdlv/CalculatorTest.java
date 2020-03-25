@@ -56,7 +56,7 @@ public class CalculatorTest {
 
         Expression firstOperand = new Expression(new Operand(1), new Operand(3), Operator.ADD);
         Operand secondOperand = new Operand(1);
-        Expression expression = new Expression(firstOperand, secondOperand, Operator.ADD);
+        Expression expression = new Expression(firstOperand, new Expression(new Operand(0), secondOperand, ADD), Operator.ADD);
 
         Expression result = rpnCalculator.calculate(expression);
 

@@ -18,12 +18,6 @@ public class Expression {
         this.operator = operator;
     }
 
-    public Expression(Expression expression, Operand secondOperand, Operator operator) {
-        this.firstOperand = new Operand(expression.firstOperand.add(expression.secondOperand));
-        this.secondOperand = secondOperand;
-        this.operator = operator;
-    }
-
     public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
 
         this.firstOperand = new Operand(firstExpression.firstOperand.add(firstExpression.secondOperand));
