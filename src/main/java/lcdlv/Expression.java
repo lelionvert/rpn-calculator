@@ -55,4 +55,8 @@ public class Expression {
                 ", operator=" + operator +
                 '}';
     }
+
+    public int multiply() {
+        return 1;
+    }
 }

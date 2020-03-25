@@ -111,4 +111,26 @@ public class CalculatorTest {
         Expression result = rpnCalculator.calculate(expression);
         assertThat(result).isEqualTo(expectedExpression);
     }
+
+
+    // 1 1 x --> 1
+    // 2 1 x --> 2
+    // 1 2 x --> 2
+    // 0 1 x --> 0
+    // 1 0 x --> 0
+    // 2 3 x --> 6
+    // 2 3 x 2 x --> 12
+
+
+    @Test
+    void name() {
+
+        Expression expression = new Expression(new Operand(1),new Operand(1),Operator.MULTIPLY);
+        Expression expectedExpression = new Expression(1);
+
+        RPNCalculator rpnCalculator = new RPNCalculator();
+        Expression result = rpnCalculator.calculate(expression);
+
+        assertThat(result).isEqualTo(expectedExpression);
+    }
 }
