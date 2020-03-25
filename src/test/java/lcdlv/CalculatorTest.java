@@ -1,17 +1,12 @@
 package lcdlv;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {
-
-    @Test
-    public void envTest() {
-        assertThat(true).isTrue();
-    }
 
     // EXEMPLES :
     // 1 => 1
@@ -34,33 +29,20 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(uniqueExpression);
     }
 
+    @ParameterizedTest
+    @CsvSource({"1,0,1", "1,2,3"})
+    public void returnsNewExpressionWhenAddingDifferentOperands(int firstOperandValue, int secondOperandValue, int expectedResult) {
+        Operand firstOperand = new Operand(firstOperandValue);
+        Operand secondOperand = new Operand(secondOperandValue);
 
+        Expression expression = new Expression(firstOperand, secondOperand, Operator.ADD);
 
-    @Test
-    void returnsAnExpressionOfOneWhenCalculatingAdditionBetweenExpressionOneAndZero() {
-        Operand op1 = new Operand(1);
-        Operand op2 = new Operand(0);
-        Expression expression = new Expression(op1, op2, Operator.ADD);
+        RPNCalculator rpnCalculator = new RPNCalculator();
 
-        RPNCalculator rpn = new RPNCalculator();
+        Expression result = rpnCalculator.calculate(expression);
 
-        Expression result = rpn.calculate(expression);
-
-        Expression expectedExpression = new Expression(1);
+        Expression expectedExpression = new Expression(expectedResult);
         assertThat(result).isEqualTo(expectedExpression);
     }
 
-    @Test
-    void returnsAnExpressionOfOneWhenCalculatingAdditionBetweenExpressionOneAnd() {
-        Operand op1 = new Operand(1);
-        Operand op2 = new Operand(2);
-        Expression expression = new Expression(op1, op2, Operator.ADD);
-
-        RPNCalculator rpn = new RPNCalculator();
-
-        Expression result = rpn.calculate(expression);
-
-        Expression expectedExpression = new Expression(3);
-        assertThat(result).isEqualTo(expectedExpression);
-    }
 }

@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Expression {
 
     private final int value;
-    private Operand op1;
-    private Operand op2;
+    private Operand firstOperand;
+    private Operand secondOperand;
     private Operator operator;
 
     public Expression(int expression) {
@@ -14,16 +14,16 @@ public class Expression {
         this.value = expression;
     }
 
-    public Expression(Operand op1, Operand op2, Operator operator) {
-        this.op1 = op1;
-        this.op2 = op2;
+    public Expression(Operand firstOperand, Operand secondOperand, Operator operator) {
+        this.firstOperand = firstOperand;
+        this.secondOperand = secondOperand;
         this.operator = operator;
 
         value = 0;
     }
 
     public Expression add() {
-        int resultAddition = op1.add(op2);
+        int resultAddition = firstOperand.add(secondOperand);
 
         return new Expression(resultAddition);
     }
