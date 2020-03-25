@@ -28,4 +28,12 @@ public class CalculatorTest {
 
         assertThat(result).isEqualTo(uniqueExpression);
     }
+
+    @Test
+    void returnExpressionOfTwoWhenCalculateWithOnlyTheExpressionOfTwo() {
+        Expression uniqueExpression = new Expression(2);
+        RPNCalculator rpnCalculator = new RPNCalculator();
+        Expression result = rpnCalculator.calculate(uniqueExpression);
+        assertThat(result).isEqualTo(uniqueExpression);
+    }
 }
