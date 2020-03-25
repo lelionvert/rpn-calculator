@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Expression {
 
-    private int value;
+    private final int value;
 
     public Expression(int expression) {
 
