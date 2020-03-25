@@ -24,6 +24,13 @@ public class Expression {
         operator = add;
     }
 
+    public Expression(Operand firstOperand, Expression expression, Operator operator) {
+
+        this.firstOperand = firstOperand;
+        this.secondOperand = new Operand(expression.firstOperand.add(expression.secondOperand));
+        this.operator = operator;
+    }
+
     public int add() {
         return firstOperand.add(secondOperand);
     }
