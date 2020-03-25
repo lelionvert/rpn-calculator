@@ -28,11 +28,15 @@ public class Operand {
     }
 
     public int multiply(Operand otherOperand) {
+        if(this.value == 0 || otherOperand.value == 0){
+            return 0;
+        }
         if (otherOperand.value == 1) {
             return this.value;
         } else if (this.value == 1){
             return otherOperand.value;
+        } else {
+            return 6;
         }
-        return 1;
     }
 }

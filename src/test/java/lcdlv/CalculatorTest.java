@@ -144,4 +144,34 @@ public class CalculatorTest {
 
         assertThat(result).isEqualTo(expectedExpression);
     }
+
+    @Test
+    void returnZeroWhenMultiplyingAndOneOfTheOperandIsZero(){
+        Expression expression = new Expression(new Operand(0),new Operand(2),Operator.MULTIPLY);
+        Expression expectedExpression = new Expression(0);
+
+        Expression result = expression.calculate();
+
+        assertThat(result).isEqualTo(expectedExpression);
+    }
+
+    @Test
+    void returnZeroWhenMultiplyingAndTheSecondOperandIsZero() {
+        Expression expression = new Expression(new Operand(2),new Operand(0),Operator.MULTIPLY);
+        Expression expectedExpression = new Expression(0);
+
+        Expression result = expression.calculate();
+
+        assertThat(result).isEqualTo(expectedExpression);
+    }
+
+    @Test
+    public void deuxFoisTrois(){
+        Expression expression = new Expression(new Operand(2),new Operand(3),Operator.MULTIPLY);
+        Expression expectedExpression = new Expression(6);
+
+        Expression result = expression.calculate();
+
+        assertThat(result).isEqualTo(expectedExpression);
+    }
 }
