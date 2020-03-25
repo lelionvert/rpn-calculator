@@ -1,6 +1,8 @@
 package lcdlv;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,9 +21,10 @@ public class CalculatorTest {
     // 3 5 8 * 7 + * => 3*((5*8) + 7) = 141
 
 
-    @Test
-    void returnExpressionOfOneWhenCalculateWithOnlyTheExpressionOfOne() {
-        Expression uniqueExpression = new Expression(1);
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2})
+    public void returnsSameExpressionWhenCalculatingWithOnlyOneExpression(int value) {
+        Expression uniqueExpression = new Expression(value);
         RPNCalculator rpnCalculator = new RPNCalculator();
 
         Expression result = rpnCalculator.calculate(uniqueExpression);
@@ -29,11 +32,7 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(uniqueExpression);
     }
 
-    @Test
-    void returnExpressionOfTwoWhenCalculateWithOnlyTheExpressionOfTwo() {
-        Expression uniqueExpression = new Expression(2);
-        RPNCalculator rpnCalculator = new RPNCalculator();
-        Expression result = rpnCalculator.calculate(uniqueExpression);
-        assertThat(result).isEqualTo(uniqueExpression);
-    }
+
+
+
 }
