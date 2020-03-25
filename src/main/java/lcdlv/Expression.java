@@ -8,26 +8,24 @@ public class Expression {
     private Operand secondOperand;
     private Operator operator;
 
-    public Expression(Operand firstOperand) {
-        this.firstOperand = firstOperand;
+    public Expression(int value) {
+        this.firstOperand = new Operand(value);
     }
 
     public Expression(Operand firstOperand, Operand secondOperand, Operator operator) {
-        this(firstOperand);
+        this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
         this.operator = operator;
     }
 
     public Expression(Expression expression, Operand secondOperand, Operator add) {
-        this(new Operand(expression.firstOperand.add(expression.secondOperand)));
+        this.firstOperand = new Operand(expression.firstOperand.add(expression.secondOperand));
         this.secondOperand = secondOperand;
         operator = add;
     }
 
-    public Expression add() {
-        int resultAddition = firstOperand.add(secondOperand);
-
-        return new Expression(new Operand(resultAddition));
+    public int add() {
+        return firstOperand.add(secondOperand);
     }
 
     public boolean typeOf(Operator add) {
