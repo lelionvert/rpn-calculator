@@ -28,8 +28,11 @@ public class Operand {
     }
 
     public int multiply(Operand otherOperand) {
-        if (otherOperand.value == 1)
+        if (otherOperand.value == 1) {
             return this.value;
+        } else if (this.value == 1){
+            return otherOperand.value;
+        }
         return 1;
     }
 }

@@ -134,4 +134,14 @@ public class CalculatorTest {
 
         assertThat(result).isEqualTo(expectedExpression);
     }
+
+    @Test
+    void returnNewExpressionWhenHavingExpressionWithOperandTwoAndOperandOne() {
+        Expression expression = new Expression(new Operand(1),new Operand(2),Operator.MULTIPLY);
+        Expression expectedExpression = new Expression(2);
+
+        Expression result = expression.calculate();
+
+        assertThat(result).isEqualTo(expectedExpression);
+    }
 }
