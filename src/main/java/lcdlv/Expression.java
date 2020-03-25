@@ -2,6 +2,8 @@ package lcdlv;
 
 import java.util.Objects;
 
+import static lcdlv.Operator.*;
+
 public class Expression {
 
     private Operand firstOperand;
@@ -18,17 +20,19 @@ public class Expression {
         this.operator = operator;
     }
 
-    public Expression(Expression expression, Operand secondOperand, Operator add) {
+    public Expression(Expression expression, Operand secondOperand, Operator operator) {
         this.firstOperand = new Operand(expression.firstOperand.add(expression.secondOperand));
         this.secondOperand = secondOperand;
-        operator = add;
+        this.operator = operator;
     }
 
     public Expression(Operand firstOperand, Expression expression, Operator operator) {
+        Expression e = new Expression(firstOperand, new Operand(0), ADD);
 
-        this.firstOperand = firstOperand;
+        this.firstOperand = new Operand(e.firstOperand.add(e.secondOperand));
         this.secondOperand = new Operand(expression.firstOperand.add(expression.secondOperand));
         this.operator = operator;
+
     }
 
     public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
