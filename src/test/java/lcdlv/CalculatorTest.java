@@ -176,7 +176,7 @@ public class CalculatorTest {
     }
 
     @Test
-    void anotherTest() {
+    void returnNewExpressionOfNineWhenMultiplyingTwoOperandsOfThreeAndThree() {
         Expression expression = new Expression(new Operand(3),new Operand(3),Operator.MULTIPLY);
         Expression expectedExpression = new Expression(9);
 
