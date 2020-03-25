@@ -94,5 +94,21 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(expectedExpression);
     }
 
-    //
+    // 4 1 2 + + 3 2 + +  ===> 4 (1 2 +) + (3 2 +) + ==>
+    // refactor la creation des operands et des expressions
+
+    @Test
+    void returnNewExpressionWhenAddingSeveralExpressions() {
+
+        Expression expectedExpression = new Expression(12);
+        RPNCalculator rpnCalculator = new RPNCalculator();
+        Expression e1 = new Expression(new Operand(1), new Operand(2), ADD);
+        Expression firstExpression = new Expression(new Expression(new Operand(4), new Operand(0), ADD), e1, ADD);
+
+        Expression secondExpression = new Expression(new Operand(3), new Operand(2), ADD);
+        Expression expression = new Expression(firstExpression, secondExpression, ADD);
+
+        Expression result = rpnCalculator.calculate(expression);
+        assertThat(result).isEqualTo(expectedExpression);
+    }
 }
