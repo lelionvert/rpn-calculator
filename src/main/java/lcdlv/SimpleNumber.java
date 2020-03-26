@@ -11,7 +11,11 @@ public class SimpleNumber implements Operand{
     }
 
     public int add(SimpleNumber op2) {
-        return value + op2.value;
+        return value + op2.calculate();
+    }
+
+    public int calculate() {
+        return value;
     }
 
     @Override

@@ -2,7 +2,7 @@ package lcdlv;
 
 import java.util.Objects;
 
-public class Expression {
+public class Expression implements Operand {
 
     private SimpleNumber firstOperand;
     private SimpleNumber secondOperand;
@@ -22,19 +22,10 @@ public class Expression {
     }
 
     public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
+        this(firstExpression.calculate().firstOperand, secondExpression.calculate().firstOperand, operator);
         this.firstExpression = firstExpression;
         this.secondExpression = secondExpression;
-        this.operator = operator;
-        someKindOfMethod();
-    }
 
-    private void someKindOfMethod() {
-        this.firstOperand = this.firstExpression.calculate().firstOperand;
-        this.secondOperand = this.secondExpression.calculate().firstOperand;
-    }
-
-    public int add() {
-        return firstOperand.add(secondOperand);
     }
 
     public boolean typeOf(Operator add) {
@@ -66,17 +57,12 @@ public class Expression {
                 '}';
     }
 
-    public int multiply() {
-        return firstOperand.multiply(secondOperand);
-    }
-
     public Expression calculate() {
 
-
         if (typeOf(Operator.ADD)) {
-            return new Expression(add());
+            return new Expression(firstOperand.add(secondOperand));
         } else if (typeOf(Operator.MULTIPLY)) {
-            return new Expression(multiply());
+            return new Expression(firstOperand.multiply(secondOperand));
         }
         return this;
     }
