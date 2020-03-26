@@ -119,27 +119,15 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(expectedExpression);
     }
 
-    // 2 3 x 2 1 x x --> 12
-    @Test
-    public void returnAndExpressionWhenMultiplyingTwoExpressions(){
 
-        Expression firstExpression = new Expression(new Operand(2), new Operand(3), MULTIPLY);
-        Expression secondExpression = new Expression(new Operand(2), new Operand(1), MULTIPLY);
+
+    @ParameterizedTest
+    @CsvSource({"2, 3, 2, 1, 12", "1, 3, 4, 2, 24"})
+    public void returnAnExpressionWhenMultiplyingTwoExpressions(int firstOperandFirstExpression, int secondOperandFirstExpression, int firstOperandSecondExpression, int secondOperandSecondExpression, int expectedValue) {
+        Expression firstExpression = new Expression(new Operand(firstOperandFirstExpression), new Operand(secondOperandFirstExpression), MULTIPLY);
+        Expression secondExpression = new Expression(new Operand(firstOperandSecondExpression), new Operand(secondOperandSecondExpression), MULTIPLY);
         Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
-        Expression expectedExpression = new Expression(12);
-
-        Expression result = expression.calculate();
-
-        assertThat(result).isEqualTo(expectedExpression);
-    }
-
-    // 1 3 x 4 2 x x
-    @Test
-    void name() {
-        Expression firstExpression = new Expression(new Operand(1), new Operand(3), MULTIPLY);
-        Expression secondExpression = new Expression(new Operand(4), new Operand(2), MULTIPLY);
-        Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
-        Expression expectedExpression = new Expression(24);
+        Expression expectedExpression = new Expression(expectedValue);
 
         Expression result = expression.calculate();
 

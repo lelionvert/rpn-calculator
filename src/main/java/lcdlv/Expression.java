@@ -23,12 +23,11 @@ public class Expression {
         if (operator.equals(Operator.MULTIPLY)){
             this.firstOperand = new Operand(firstExpression.multiply());
             this.secondOperand = new Operand(secondExpression.multiply());
-            this.operator = operator;
         } else {
             this.firstOperand = new Operand(firstExpression.add());
             this.secondOperand = new Operand(secondExpression.add());
-            this.operator = operator;
         }
+        this.operator = operator;
     }
 
     public int add() {
