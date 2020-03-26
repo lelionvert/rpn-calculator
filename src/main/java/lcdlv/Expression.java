@@ -63,6 +63,7 @@ public class Expression implements Operand {
                 '}';
     }
 
+    @Override
     public int calculate() {
         int result;
         if (typeOf(Operator.ADD)) {

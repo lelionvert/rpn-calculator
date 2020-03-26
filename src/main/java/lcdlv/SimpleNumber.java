@@ -14,6 +14,7 @@ public class SimpleNumber implements Operand{
         return value + op2.calculate();
     }
 
+    @Override
     public int calculate() {
         return value;
     }
