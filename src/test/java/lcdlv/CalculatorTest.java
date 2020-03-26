@@ -48,17 +48,16 @@ public class CalculatorTest {
     @Test
     void returnsNewExpressionWhenAddingOneExpressionAndOneOperand() {
         // 1 3 + 1 + => (1 + 3) + 1 = 5
-        Expression expectedExpression = new Expression(new SimpleNumber(5));
+        int expectedResult = 5;
 
         Expression firstOperand = new Expression(new SimpleNumber(1), new SimpleNumber(3), Operator.ADD);
         SimpleNumber secondSimpleNumber = new SimpleNumber(1);
         Expression expression = new Expression(firstOperand, new Expression(new SimpleNumber(0), secondSimpleNumber, ADD), Operator.ADD);
 
-        int result1 = expression.calculate();
+        int result = expression.calculate();
 
-        Expression result = new Expression(new SimpleNumber(result1));
 
-        assertThat(result).isEqualTo(expectedExpression);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     // 1 1 3 + + => 1 4 + => 5
