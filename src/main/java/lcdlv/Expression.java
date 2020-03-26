@@ -14,10 +14,6 @@ public class Expression implements Operand {
         this.operator = operator;
     }
 
-    public boolean typeOf(Operator add) {
-        return add.equals(this.operator);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -46,12 +42,16 @@ public class Expression implements Operand {
     @Override
     public int calculate() {
         int result;
-        if (typeOf(Operator.ADD)) {
-            result = firstOperand.calculate() + secondOperand.calculate();
-        } else if (typeOf(Operator.MULTIPLY)) {
-            result = firstOperand.calculate() * secondOperand.calculate();
-        } else {
-            result = firstOperand.calculate();
+        switch (this.operator) {
+            case ADD:
+                result = firstOperand.calculate() + secondOperand.calculate();
+                break;
+            case MULTIPLY:
+                result = firstOperand.calculate() * secondOperand.calculate();
+                break;
+            default:
+                result = firstOperand.calculate();
+                break;
         }
         return result;
     }
