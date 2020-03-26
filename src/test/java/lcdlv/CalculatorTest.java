@@ -106,6 +106,7 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(expectedExpression);
     }
 
+    // TODO : gestion du add entre expression et operand !!!
 
 
     @ParameterizedTest
