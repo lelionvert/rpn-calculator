@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Expression implements Operand {
 
-    private SimpleNumber firstOperand;
-    private SimpleNumber secondOperand;
+    private Operand firstOperand;
+    private Operand secondOperand;
     private Operator operator;
     private Expression firstExpression;
     private Expression secondExpression;
@@ -15,23 +15,10 @@ public class Expression implements Operand {
         this.firstOperand = new SimpleNumber(value);
     }
 
-    public Expression(SimpleNumber firstOperand, SimpleNumber secondOperand, Operator operator) {
+    public Expression(Operand firstOperand, Operand secondOperand, Operator operator) {
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
         this.operator = operator;
-    }
-
-    public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
-
-        int firstResult = firstExpression.calculate();
-        int secondResult = secondExpression.calculate();
-
-        this.firstOperand = new Expression(firstResult).firstOperand;
-        this.secondOperand = new Expression(secondResult).firstOperand;
-        this.operator = operator;
-        this.firstExpression = firstExpression;
-        this.secondExpression = secondExpression;
-
     }
 
     public boolean typeOf(Operator add) {
