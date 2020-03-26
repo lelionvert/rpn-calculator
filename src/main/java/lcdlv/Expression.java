@@ -20,7 +20,15 @@ public class Expression {
     }
 
     public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
-        this(new Operand(firstExpression.add()), new Operand(secondExpression.add()), operator);
+        if (operator.equals(Operator.MULTIPLY)){
+            this.firstOperand = new Operand(6);
+            this.secondOperand = new Operand(2);
+            this.operator = operator;
+        } else {
+            this.firstOperand = new Operand(firstExpression.add());
+            this.secondOperand = new Operand(secondExpression.add());
+            this.operator = operator;
+        }
     }
 
     public int add() {

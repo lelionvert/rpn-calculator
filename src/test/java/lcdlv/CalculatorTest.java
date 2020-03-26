@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static lcdlv.Operator.ADD;
+import static lcdlv.Operator.MULTIPLY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {
@@ -105,13 +106,27 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(expectedExpression);
     }
 
-    // 2 3 x 2 x --> 12
+
 
     @ParameterizedTest
     @CsvSource({"1,1,1", "2,1,2", "1,2,2", "0,2,0", "2,0,0", "2,3,6", "3,3,9"})
     public void returnAnExpressionWhenMultiplyingTwoOperands(int firstValue, int secondValue, int expectedValue) {
         Expression expression = new Expression(new Operand(firstValue), new Operand(secondValue), Operator.MULTIPLY);
         Expression expectedExpression = new Expression(expectedValue);
+
+        Expression result = expression.calculate();
+
+        assertThat(result).isEqualTo(expectedExpression);
+    }
+
+    // 2 3 x 2 x --> 12
+    @Test
+    public void aaaaa(){
+
+        Expression firstExpression = new Expression(new Operand(2), new Operand(3), MULTIPLY);
+        Expression secondExpression = new Expression(new Operand(2), new Operand(1), MULTIPLY);
+        Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
+        Expression expectedExpression = new Expression(12);
 
         Expression result = expression.calculate();
 
