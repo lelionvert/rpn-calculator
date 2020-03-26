@@ -26,6 +26,9 @@ public class Expression {
                 this.firstOperand = firstExpression.firstOperand;
                 this.secondOperand = new Operand(secondExpression.multiply());
 
+            } else if (secondExpression.operator == null) {
+                this.firstOperand = new Operand(firstExpression.multiply());
+                this.secondOperand = secondExpression.firstOperand;
             } else {
                 this.firstOperand = new Operand(firstExpression.multiply());
                 this.secondOperand = new Operand(secondExpression.multiply());

@@ -137,10 +137,23 @@ public class CalculatorTest {
     // refactor la creation des operands et des expressions
     // 2 2 2 x x ==> 8
     @Test
-    void name() {
+    void returnsNewExpressionWhenMultiplyingAnExpressionWithOneOperandAndExpressionWithTwoOperands() {
         Expression firstExpression = new Expression(2);
         Expression secondExpression = new Expression(new Operand(2), new Operand(2), MULTIPLY);
         Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
+        Expression expectedExpression = new Expression(8);
+
+        Expression result = expression.calculate();
+
+        assertThat(result).isEqualTo(expectedExpression);
+    }
+
+    // 2 2 x 2 x ==> 8
+    @Test
+    void returnsNewExpressionWhenMultiplyingAnExpressionWithOneOperandAndExpressionWithTwoOperan() {
+        Expression first = new Expression(new Operand(2), new Operand(2), MULTIPLY);
+        Expression second = new Expression(2);
+        Expression expression = new Expression(first, second, MULTIPLY);
         Expression expectedExpression = new Expression(8);
 
         Expression result = expression.calculate();
