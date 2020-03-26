@@ -41,15 +41,6 @@ public class Expression implements Operand {
 
     @Override
     public int calculate() {
-        int result=0;
-        switch (this.operator) {
-            case ADD:
-                result = firstOperand.calculate() + secondOperand.calculate();
-                break;
-            case MULTIPLY:
-                result = firstOperand.calculate() * secondOperand.calculate();
-                break;
-        }
-        return result;
+        return this.operator.calculate(firstOperand, secondOperand);
     }
 }
