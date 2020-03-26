@@ -2,7 +2,7 @@ package lcdlv;
 
 import java.util.Objects;
 
-public class SimpleNumber {
+public class SimpleNumber implements Operand{
     private int value;
 
     public SimpleNumber(int value) {

@@ -7,6 +7,8 @@ public class Expression {
     private SimpleNumber firstOperand;
     private SimpleNumber secondOperand;
     private Operator operator;
+    private Expression firstExpression;
+    private Expression secondExpression;
 
 
     public Expression(int value) {
@@ -20,23 +22,23 @@ public class Expression {
     }
 
     public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
-        if (operator.equals(Operator.MULTIPLY)) {
-
-            if (firstExpression.operator == null) {
-                this.firstOperand = firstExpression.firstOperand;
-                this.secondOperand = new SimpleNumber(secondExpression.multiply());
-            } else if (secondExpression.operator == null) {
-                this.firstOperand = new SimpleNumber(firstExpression.multiply());
-                this.secondOperand = secondExpression.firstOperand;
-            } else {
-                this.firstOperand = new SimpleNumber(firstExpression.multiply());
-                this.secondOperand = new SimpleNumber(secondExpression.multiply());
-            }
-        } else {
-            this.firstOperand = new SimpleNumber(firstExpression.add());
-            this.secondOperand = new SimpleNumber(secondExpression.add());
-        }
+        this.firstExpression = firstExpression;
+        this.secondExpression = secondExpression;
         this.operator = operator;
+        someKindOfMethod();
+    }
+
+    private void someKindOfMethod() {
+        if (this.firstExpression.operator == null) {
+            this.firstOperand = this.firstExpression.firstOperand;
+            this.secondOperand = this.secondExpression.calculate().firstOperand;
+        } else if (this.secondExpression.operator == null) {
+            this.firstOperand = this.firstExpression.calculate().firstOperand;
+            this.secondOperand = this.secondExpression.firstOperand;
+        } else {
+            this.firstOperand = this.firstExpression.calculate().firstOperand;
+            this.secondOperand = this.secondExpression.calculate().firstOperand;
+        }
     }
 
     public int add() {
@@ -77,6 +79,8 @@ public class Expression {
     }
 
     public Expression calculate() {
+
+
         if (typeOf(Operator.ADD)) {
             return new Expression(add());
         } else if (typeOf(Operator.MULTIPLY)) {
