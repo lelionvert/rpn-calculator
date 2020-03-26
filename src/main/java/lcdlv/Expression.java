@@ -21,8 +21,8 @@ public class Expression {
 
     public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
         if (operator.equals(Operator.MULTIPLY)){
-            this.firstOperand = new Operand(6);
-            this.secondOperand = new Operand(2);
+            this.firstOperand = new Operand(firstExpression.multiply());
+            this.secondOperand = new Operand(secondExpression.multiply());
             this.operator = operator;
         } else {
             this.firstOperand = new Operand(firstExpression.add());
