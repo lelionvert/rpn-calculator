@@ -29,16 +29,8 @@ public class Expression {
     }
 
     private void someKindOfMethod() {
-        if (this.firstExpression.operator == null) {
-            this.firstOperand = this.firstExpression.firstOperand;
-            this.secondOperand = this.secondExpression.calculate().firstOperand;
-        } else if (this.secondExpression.operator == null) {
-            this.firstOperand = this.firstExpression.calculate().firstOperand;
-            this.secondOperand = this.secondExpression.firstOperand;
-        } else {
-            this.firstOperand = this.firstExpression.calculate().firstOperand;
-            this.secondOperand = this.secondExpression.calculate().firstOperand;
-        }
+        this.firstOperand = this.firstExpression.calculate().firstOperand;
+        this.secondOperand = this.secondExpression.calculate().firstOperand;
     }
 
     public int add() {
