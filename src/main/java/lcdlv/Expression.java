@@ -8,8 +8,8 @@ public class Expression implements Operand {
     private Operand secondOperand;
     private Operator operator;
 
-    public Expression(int value) {
-        this.firstOperand = new SimpleNumber(value);
+    public Expression(SimpleNumber firstOperand) {
+        this.firstOperand = firstOperand;
     }
 
     public Expression(Operand firstOperand, Operand secondOperand, Operator operator) {
