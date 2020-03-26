@@ -108,20 +108,14 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(expectedResult);
     }
 
-    // TODO : gestion du add entre expression et operand !!!
-
-
     @ParameterizedTest
     @CsvSource({"1,1,1", "2,1,2", "1,2,2", "0,2,0", "2,0,0", "2,3,6", "3,3,9"})
     public void returnAnExpressionWhenMultiplyingTwoOperands(int firstValue, int secondValue, int expectedValue) {
         Expression expression = new Expression(new SimpleNumber(firstValue), new SimpleNumber(secondValue), Operator.MULTIPLY);
-        Expression expectedExpression = new Expression(new SimpleNumber(expectedValue));
 
-        int result1 = expression.calculate();
+        int result = expression.calculate();
 
-        Expression result = new Expression(new SimpleNumber(result1));
-
-        assertThat(result).isEqualTo(expectedExpression);
+        assertThat(result).isEqualTo(expectedValue);
     }
 
 
@@ -131,13 +125,10 @@ public class CalculatorTest {
         Expression firstExpression = new Expression(new SimpleNumber(firstOperandFirstExpression), new SimpleNumber(secondOperandFirstExpression), MULTIPLY);
         Expression secondExpression = new Expression(new SimpleNumber(firstOperandSecondExpression), new SimpleNumber(secondOperandSecondExpression), MULTIPLY);
         Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
-        Expression expectedExpression = new Expression(new SimpleNumber(expectedValue));
 
         int result1 = expression.calculate();
 
-        Expression result = new Expression(new SimpleNumber(result1));
-
-        assertThat(result).isEqualTo(expectedExpression);
+        assertThat(result1).isEqualTo(expectedValue);
     }
 
     // refactor la creation des operands et des expressions
