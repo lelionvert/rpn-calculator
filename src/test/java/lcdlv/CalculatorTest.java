@@ -126,25 +126,24 @@ public class CalculatorTest {
         Expression secondExpression = new Expression(new SimpleNumber(firstOperandSecondExpression), new SimpleNumber(secondOperandSecondExpression), MULTIPLY);
         Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
 
-        int result1 = expression.calculate();
+        int result = expression.calculate();
 
-        assertThat(result1).isEqualTo(expectedValue);
+        assertThat(result).isEqualTo(expectedValue);
     }
 
     // refactor la creation des operands et des expressions
     // 2 2 2 x x ==> 8
     @Test
     void returnsNewExpressionWhenMultiplyingAnExpressionWithOneOperandAndExpressionWithTwoOperands() {
+        int expectedValue = 8;
+
         Expression firstExpression = new Expression(new SimpleNumber(2));
         Expression secondExpression = new Expression(new SimpleNumber(2), new SimpleNumber(2), MULTIPLY);
         Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
-        Expression expectedExpression = new Expression(new SimpleNumber(8));
 
-        int result1 = expression.calculate();
+        int result = expression.calculate();
 
-        Expression result = new Expression(new SimpleNumber(result1));
-
-        assertThat(result).isEqualTo(expectedExpression);
+        assertThat(result).isEqualTo(expectedValue);
     }
 
     // 2 2 x 2 x ==> 8
