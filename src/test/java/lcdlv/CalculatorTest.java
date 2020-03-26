@@ -134,10 +134,10 @@ public class CalculatorTest {
     // refactor la creation des operands et des expressions
     // 2 2 2 x x ==> 8
     @Test
-    void returnsNewExpressionWhenMultiplyingAnExpressionWithOneOperandAndExpressionWithTwoOperands() {
+    void returnsAProductWhenMultiplyingASimpleNumberAndAnExpressionOfMultiplication() {
         int expectedValue = 8;
 
-        Expression firstExpression = new Expression(new SimpleNumber(2));
+        Operand firstExpression = new SimpleNumber(2);
         Expression secondExpression = new Expression(new SimpleNumber(2), new SimpleNumber(2), MULTIPLY);
         Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
 
@@ -150,7 +150,7 @@ public class CalculatorTest {
     @Test
     void returnAProductWhenMultiplyingAnExpressionOfMultiplicationAndASimpleNumber() {
         Expression first = new Expression(new SimpleNumber(2), new SimpleNumber(2), MULTIPLY);
-        Expression second = new Expression(new SimpleNumber(2));
+        Operand second = new SimpleNumber(2);
         Expression expression = new Expression(first, second, MULTIPLY);
         int expectedValue = 8;
 
