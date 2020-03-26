@@ -148,16 +148,14 @@ public class CalculatorTest {
 
     // 2 2 x 2 x ==> 8
     @Test
-    void returnsNewExpressionWhenMultiplyingAnExpressionWithOneOperandAndExpressionWithTwoOperan() {
+    void returnAProductWhenMultiplyingAnExpressionOfMultiplicationAndASimpleNumber() {
         Expression first = new Expression(new SimpleNumber(2), new SimpleNumber(2), MULTIPLY);
         Expression second = new Expression(new SimpleNumber(2));
         Expression expression = new Expression(first, second, MULTIPLY);
-        Expression expectedExpression = new Expression(new SimpleNumber(8));
+        int expectedValue = 8;
 
-        int result1 = expression.calculate();
+        int result = expression.calculate();
 
-        Expression result = new Expression(new SimpleNumber(result1));
-
-        assertThat(result).isEqualTo(expectedExpression);
+        assertThat(result).isEqualTo(expectedValue);
     }
 }
