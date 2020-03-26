@@ -90,7 +90,7 @@ public class CalculatorTest {
     }
 
     // 4 1 2 + + 3 2 + +  ===> 4 (1 2 +) + (3 2 +) + ==>
-    // refactor la creation des operands et des expressions
+
 
     @Test
     void returnNewExpressionWhenAddingSeveralExpressions() {
@@ -128,6 +128,20 @@ public class CalculatorTest {
         Expression secondExpression = new Expression(new Operand(firstOperandSecondExpression), new Operand(secondOperandSecondExpression), MULTIPLY);
         Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
         Expression expectedExpression = new Expression(expectedValue);
+
+        Expression result = expression.calculate();
+
+        assertThat(result).isEqualTo(expectedExpression);
+    }
+
+    // refactor la creation des operands et des expressions
+    // 2 2 2 x x ==> 8
+    @Test
+    void name() {
+        Expression firstExpression = new Expression(2);
+        Expression secondExpression = new Expression(new Operand(2), new Operand(2), MULTIPLY);
+        Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
+        Expression expectedExpression = new Expression(8);
 
         Expression result = expression.calculate();
 

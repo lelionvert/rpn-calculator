@@ -20,9 +20,16 @@ public class Expression {
     }
 
     public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
-        if (operator.equals(Operator.MULTIPLY)){
-            this.firstOperand = new Operand(firstExpression.multiply());
-            this.secondOperand = new Operand(secondExpression.multiply());
+        if (operator.equals(Operator.MULTIPLY)) {
+
+            if (firstExpression.operator == null) {
+                this.firstOperand = firstExpression.firstOperand;
+                this.secondOperand = new Operand(secondExpression.multiply());
+
+            } else {
+                this.firstOperand = new Operand(firstExpression.multiply());
+                this.secondOperand = new Operand(secondExpression.multiply());
+            }
         } else {
             this.firstOperand = new Operand(firstExpression.add());
             this.secondOperand = new Operand(secondExpression.add());
