@@ -23,11 +23,11 @@ public class Expression implements Operand {
 
     public Expression(Expression firstExpression, Expression secondExpression, Operator operator) {
 
-        int result = secondExpression.calculate();
-        int result1 = firstExpression.calculate();
+        int firstResult = firstExpression.calculate();
+        int secondResult = secondExpression.calculate();
 
-        this.firstOperand = new Expression(result1).firstOperand;
-        this.secondOperand = new Expression(result).firstOperand;
+        this.firstOperand = new Expression(firstResult).firstOperand;
+        this.secondOperand = new Expression(secondResult).firstOperand;
         this.operator = operator;
         this.firstExpression = firstExpression;
         this.secondExpression = secondExpression;
@@ -67,10 +67,9 @@ public class Expression implements Operand {
     public int calculate() {
         int result;
         if (typeOf(Operator.ADD)) {
-
-            result = firstOperand.add(secondOperand);
+            result = firstOperand.calculate() + secondOperand.calculate();
         } else if (typeOf(Operator.MULTIPLY)) {
-            result = firstOperand.multiply(secondOperand);
+            result = firstOperand.calculate() * secondOperand.calculate();
         } else {
             result = firstOperand.calculate();
         }

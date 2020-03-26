@@ -10,10 +10,6 @@ public class SimpleNumber implements Operand{
         this.value = value;
     }
 
-    public int add(SimpleNumber op2) {
-        return value + op2.calculate();
-    }
-
     @Override
     public int calculate() {
         return value;
@@ -32,7 +28,4 @@ public class SimpleNumber implements Operand{
         return Objects.hash(value);
     }
 
-    public int multiply(SimpleNumber otherSimpleNumber) {
-        return this.value * otherSimpleNumber.value;
-    }
 }
