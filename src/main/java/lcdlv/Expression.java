@@ -7,9 +7,6 @@ public class Expression implements Operand {
     private Operand firstOperand;
     private Operand secondOperand;
     private Operator operator;
-    private Expression firstExpression;
-    private Expression secondExpression;
-
 
     public Expression(int value) {
         this.firstOperand = new SimpleNumber(value);
