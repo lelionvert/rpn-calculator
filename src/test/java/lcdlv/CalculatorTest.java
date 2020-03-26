@@ -24,7 +24,7 @@ public class CalculatorTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2})
-    public void returnsSameExpressionWhenCalculatingWithOnlyOneExpression(int value) {
+    public void returnTheSameNumberWhenCalculatingWithOnlyOneNumber(int value) {
         Operand uniqueExpression = new SimpleNumber(value);
 
         int result = uniqueExpression.calculate();
@@ -34,7 +34,7 @@ public class CalculatorTest {
 
     @ParameterizedTest
     @CsvSource({"1,0,1", "1,2,3"})
-    public void returnsNewExpressionWhenAddingDifferentOperands(int firstOperandValue, int secondOperandValue, int expectedResult) {
+    public void returnASumWhenAddingTwoSimpleNumbers(int firstOperandValue, int secondOperandValue, int expectedResult) {
         SimpleNumber firstSimpleNumber = new SimpleNumber(firstOperandValue);
         SimpleNumber secondSimpleNumber = new SimpleNumber(secondOperandValue);
 
@@ -46,7 +46,7 @@ public class CalculatorTest {
     }
 
     @Test
-    void returnsNewExpressionWhenAddingOneExpressionAndOneOperand() {
+    void returnASumWhenAddingOneExpressionOfAdditionAndOneSimpleNumber() {
         // 1 3 + 1 + => (1 + 3) + 1 = 5
         int expectedResult = 5;
 
@@ -62,7 +62,7 @@ public class CalculatorTest {
 
     // 1 1 3 + + => 1 4 + => 5
     @Test
-    void returnsNewExpressionWhenAddingOneOperandAndOneExpression() {
+    void returnASumWhenAddingOneSimpleNumberAndOneExpressionOfAddition() {
 
         int expectedResult = 5;
 
@@ -78,7 +78,7 @@ public class CalculatorTest {
 
     // 1 2 + 3 4 + + => 3 7 + => 10
     @Test
-    void returnsNewExpressionWhenAddingTwoExpressions() {
+    void returnASumWhenAddingTwoExpressionsOfAddition() {
 
         int expectedResult = 10;
         Expression firstOperand = new Expression(new SimpleNumber(1), new SimpleNumber(2), Operator.ADD);
@@ -94,7 +94,7 @@ public class CalculatorTest {
 
 
     @Test
-    void returnNewExpressionWhenAddingSeveralExpressions() {
+    void returnASumWhenAddingSeveralExpressionsOfAddition() {
 
         int expectedResult = 12;
         Expression e1 = new Expression(new SimpleNumber(1), new SimpleNumber(2), ADD);
@@ -110,7 +110,7 @@ public class CalculatorTest {
 
     @ParameterizedTest
     @CsvSource({"1,1,1", "2,1,2", "1,2,2", "0,2,0", "2,0,0", "2,3,6", "3,3,9"})
-    public void returnAnExpressionWhenMultiplyingTwoOperands(int firstValue, int secondValue, int expectedValue) {
+    public void returnAProductWhenMultiplyingTwoSimpleNumbers(int firstValue, int secondValue, int expectedValue) {
         Expression expression = new Expression(new SimpleNumber(firstValue), new SimpleNumber(secondValue), Operator.MULTIPLY);
 
         int result = expression.calculate();
@@ -121,7 +121,7 @@ public class CalculatorTest {
 
     @ParameterizedTest
     @CsvSource({"2, 3, 2, 1, 12", "1, 3, 4, 2, 24"})
-    public void returnAnExpressionWhenMultiplyingTwoExpressions(int firstOperandFirstExpression, int secondOperandFirstExpression, int firstOperandSecondExpression, int secondOperandSecondExpression, int expectedValue) {
+    public void returnAProductWhenMultiplyingTwoExpressionsOfMultiplication(int firstOperandFirstExpression, int secondOperandFirstExpression, int firstOperandSecondExpression, int secondOperandSecondExpression, int expectedValue) {
         Expression firstExpression = new Expression(new SimpleNumber(firstOperandFirstExpression), new SimpleNumber(secondOperandFirstExpression), MULTIPLY);
         Expression secondExpression = new Expression(new SimpleNumber(firstOperandSecondExpression), new SimpleNumber(secondOperandSecondExpression), MULTIPLY);
         Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
