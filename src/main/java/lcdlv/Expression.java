@@ -59,11 +59,21 @@ public class Expression implements Operand {
 
     public Expression calculate() {
 
+        int result = getResult();
+
+        return new Expression(result);
+    }
+
+    private int getResult() {
+        int result;
         if (typeOf(Operator.ADD)) {
-            return new Expression(firstOperand.add(secondOperand));
+
+            result = firstOperand.add(secondOperand);
         } else if (typeOf(Operator.MULTIPLY)) {
-            return new Expression(firstOperand.multiply(secondOperand));
+            result = firstOperand.multiply(secondOperand);
+        } else {
+            result = firstOperand.calculate();
         }
-        return this;
+        return result;
     }
 }
