@@ -4,16 +4,16 @@ import java.util.Objects;
 
 public class Expression {
 
-    private Operand firstOperand;
-    private Operand secondOperand;
+    private SimpleNumber firstOperand;
+    private SimpleNumber secondOperand;
     private Operator operator;
 
 
     public Expression(int value) {
-        this.firstOperand = new Operand(value);
+        this.firstOperand = new SimpleNumber(value);
     }
 
-    public Expression(Operand firstOperand, Operand secondOperand, Operator operator) {
+    public Expression(SimpleNumber firstOperand, SimpleNumber secondOperand, Operator operator) {
         this.firstOperand = firstOperand;
         this.secondOperand = secondOperand;
         this.operator = operator;
@@ -24,17 +24,17 @@ public class Expression {
 
             if (firstExpression.operator == null) {
                 this.firstOperand = firstExpression.firstOperand;
-                this.secondOperand = new Operand(secondExpression.multiply());
+                this.secondOperand = new SimpleNumber(secondExpression.multiply());
             } else if (secondExpression.operator == null) {
-                this.firstOperand = new Operand(firstExpression.multiply());
+                this.firstOperand = new SimpleNumber(firstExpression.multiply());
                 this.secondOperand = secondExpression.firstOperand;
             } else {
-                this.firstOperand = new Operand(firstExpression.multiply());
-                this.secondOperand = new Operand(secondExpression.multiply());
+                this.firstOperand = new SimpleNumber(firstExpression.multiply());
+                this.secondOperand = new SimpleNumber(secondExpression.multiply());
             }
         } else {
-            this.firstOperand = new Operand(firstExpression.add());
-            this.secondOperand = new Operand(secondExpression.add());
+            this.firstOperand = new SimpleNumber(firstExpression.add());
+            this.secondOperand = new SimpleNumber(secondExpression.add());
         }
         this.operator = operator;
     }

@@ -35,10 +35,10 @@ public class CalculatorTest {
     @ParameterizedTest
     @CsvSource({"1,0,1", "1,2,3"})
     public void returnsNewExpressionWhenAddingDifferentOperands(int firstOperandValue, int secondOperandValue, int expectedResult) {
-        Operand firstOperand = new Operand(firstOperandValue);
-        Operand secondOperand = new Operand(secondOperandValue);
+        SimpleNumber firstSimpleNumber = new SimpleNumber(firstOperandValue);
+        SimpleNumber secondSimpleNumber = new SimpleNumber(secondOperandValue);
 
-        Expression expression = new Expression(firstOperand, secondOperand, Operator.ADD);
+        Expression expression = new Expression(firstSimpleNumber, secondSimpleNumber, Operator.ADD);
 
         Expression result = expression.calculate();
 
@@ -51,9 +51,9 @@ public class CalculatorTest {
         // 1 3 + 1 + => (1 + 3) + 1 = 5
         Expression expectedExpression = new Expression(5);
 
-        Expression firstOperand = new Expression(new Operand(1), new Operand(3), Operator.ADD);
-        Operand secondOperand = new Operand(1);
-        Expression expression = new Expression(firstOperand, new Expression(new Operand(0), secondOperand, ADD), Operator.ADD);
+        Expression firstOperand = new Expression(new SimpleNumber(1), new SimpleNumber(3), Operator.ADD);
+        SimpleNumber secondSimpleNumber = new SimpleNumber(1);
+        Expression expression = new Expression(firstOperand, new Expression(new SimpleNumber(0), secondSimpleNumber, ADD), Operator.ADD);
 
         Expression result = expression.calculate();
 
@@ -66,9 +66,9 @@ public class CalculatorTest {
 
         Expression expectedExpression = new Expression(5);
 
-        Operand firstOperand = new Operand(1);
-        Expression secondOperand = new Expression(new Operand(1), new Operand(3), Operator.ADD);
-        Expression expression = new Expression(new Expression(firstOperand, new Operand(0), ADD), secondOperand, Operator.ADD);
+        SimpleNumber firstSimpleNumber = new SimpleNumber(1);
+        Expression secondOperand = new Expression(new SimpleNumber(1), new SimpleNumber(3), Operator.ADD);
+        Expression expression = new Expression(new Expression(firstSimpleNumber, new SimpleNumber(0), ADD), secondOperand, Operator.ADD);
 
         Expression result = expression.calculate();
 
@@ -80,8 +80,8 @@ public class CalculatorTest {
     void returnsNewExpressionWhenAddingTwoExpressions() {
         Expression expectedExpression = new Expression(10);
 
-        Expression firstOperand = new Expression(new Operand(1), new Operand(2), Operator.ADD);
-        Expression secondOperand = new Expression(new Operand(3), new Operand(4), Operator.ADD);
+        Expression firstOperand = new Expression(new SimpleNumber(1), new SimpleNumber(2), Operator.ADD);
+        Expression secondOperand = new Expression(new SimpleNumber(3), new SimpleNumber(4), Operator.ADD);
         Expression expression = new Expression(firstOperand, secondOperand, Operator.ADD);
 
         Expression result = expression.calculate();
@@ -96,10 +96,10 @@ public class CalculatorTest {
     void returnNewExpressionWhenAddingSeveralExpressions() {
 
         Expression expectedExpression = new Expression(12);
-        Expression e1 = new Expression(new Operand(1), new Operand(2), ADD);
-        Expression firstExpression = new Expression(new Expression(new Operand(4), new Operand(0), ADD), e1, ADD);
+        Expression e1 = new Expression(new SimpleNumber(1), new SimpleNumber(2), ADD);
+        Expression firstExpression = new Expression(new Expression(new SimpleNumber(4), new SimpleNumber(0), ADD), e1, ADD);
 
-        Expression secondExpression = new Expression(new Operand(3), new Operand(2), ADD);
+        Expression secondExpression = new Expression(new SimpleNumber(3), new SimpleNumber(2), ADD);
         Expression expression = new Expression(firstExpression, secondExpression, ADD);
 
         Expression result = expression.calculate();
@@ -112,7 +112,7 @@ public class CalculatorTest {
     @ParameterizedTest
     @CsvSource({"1,1,1", "2,1,2", "1,2,2", "0,2,0", "2,0,0", "2,3,6", "3,3,9"})
     public void returnAnExpressionWhenMultiplyingTwoOperands(int firstValue, int secondValue, int expectedValue) {
-        Expression expression = new Expression(new Operand(firstValue), new Operand(secondValue), Operator.MULTIPLY);
+        Expression expression = new Expression(new SimpleNumber(firstValue), new SimpleNumber(secondValue), Operator.MULTIPLY);
         Expression expectedExpression = new Expression(expectedValue);
 
         Expression result = expression.calculate();
@@ -125,8 +125,8 @@ public class CalculatorTest {
     @ParameterizedTest
     @CsvSource({"2, 3, 2, 1, 12", "1, 3, 4, 2, 24"})
     public void returnAnExpressionWhenMultiplyingTwoExpressions(int firstOperandFirstExpression, int secondOperandFirstExpression, int firstOperandSecondExpression, int secondOperandSecondExpression, int expectedValue) {
-        Expression firstExpression = new Expression(new Operand(firstOperandFirstExpression), new Operand(secondOperandFirstExpression), MULTIPLY);
-        Expression secondExpression = new Expression(new Operand(firstOperandSecondExpression), new Operand(secondOperandSecondExpression), MULTIPLY);
+        Expression firstExpression = new Expression(new SimpleNumber(firstOperandFirstExpression), new SimpleNumber(secondOperandFirstExpression), MULTIPLY);
+        Expression secondExpression = new Expression(new SimpleNumber(firstOperandSecondExpression), new SimpleNumber(secondOperandSecondExpression), MULTIPLY);
         Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
         Expression expectedExpression = new Expression(expectedValue);
 
@@ -140,7 +140,7 @@ public class CalculatorTest {
     @Test
     void returnsNewExpressionWhenMultiplyingAnExpressionWithOneOperandAndExpressionWithTwoOperands() {
         Expression firstExpression = new Expression(2);
-        Expression secondExpression = new Expression(new Operand(2), new Operand(2), MULTIPLY);
+        Expression secondExpression = new Expression(new SimpleNumber(2), new SimpleNumber(2), MULTIPLY);
         Expression expression = new Expression(firstExpression, secondExpression, MULTIPLY);
         Expression expectedExpression = new Expression(8);
 
@@ -152,7 +152,7 @@ public class CalculatorTest {
     // 2 2 x 2 x ==> 8
     @Test
     void returnsNewExpressionWhenMultiplyingAnExpressionWithOneOperandAndExpressionWithTwoOperan() {
-        Expression first = new Expression(new Operand(2), new Operand(2), MULTIPLY);
+        Expression first = new Expression(new SimpleNumber(2), new SimpleNumber(2), MULTIPLY);
         Expression second = new Expression(2);
         Expression expression = new Expression(first, second, MULTIPLY);
         Expression expectedExpression = new Expression(8);

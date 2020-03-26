@@ -2,15 +2,15 @@ package lcdlv;
 
 import java.util.Objects;
 
-public class Operand {
+public class SimpleNumber {
     private int value;
 
-    public Operand(int value) {
+    public SimpleNumber(int value) {
 
         this.value = value;
     }
 
-    public int add(Operand op2) {
+    public int add(SimpleNumber op2) {
         return value + op2.value;
     }
 
@@ -18,8 +18,8 @@ public class Operand {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Operand operand = (Operand) o;
-        return value == operand.value;
+        SimpleNumber simpleNumber = (SimpleNumber) o;
+        return value == simpleNumber.value;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class Operand {
         return Objects.hash(value);
     }
 
-    public int multiply(Operand otherOperand) {
-        return this.value * otherOperand.value;
+    public int multiply(SimpleNumber otherSimpleNumber) {
+        return this.value * otherSimpleNumber.value;
     }
 }
