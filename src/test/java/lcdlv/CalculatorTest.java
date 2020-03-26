@@ -40,12 +40,9 @@ public class CalculatorTest {
 
         Expression expression = new Expression(firstSimpleNumber, secondSimpleNumber, Operator.ADD);
 
-        int result1 = expression.calculate();
+        int result = expression.calculate();
 
-        Expression result = new Expression(new SimpleNumber(result1));
-
-        Expression expectedExpression = new Expression(new SimpleNumber(expectedResult));
-        assertThat(result).isEqualTo(expectedExpression);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     @Test
