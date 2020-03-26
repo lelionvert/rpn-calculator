@@ -25,13 +25,11 @@ public class CalculatorTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2})
     public void returnsSameExpressionWhenCalculatingWithOnlyOneExpression(int value) {
-        Expression uniqueExpression = new Expression(new SimpleNumber(value));
+        Operand uniqueExpression = new SimpleNumber(value);
 
-        int result1 = uniqueExpression.calculate();
+        int result = uniqueExpression.calculate();
 
-        Expression result = new Expression(new SimpleNumber(result1));
-
-        assertThat(result).isEqualTo(uniqueExpression);
+        assertThat(result).isEqualTo(value);
     }
 
     @ParameterizedTest
