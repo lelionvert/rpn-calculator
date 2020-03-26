@@ -64,33 +64,30 @@ public class CalculatorTest {
     @Test
     void returnsNewExpressionWhenAddingOneOperandAndOneExpression() {
 
-        Expression expectedExpression = new Expression(new SimpleNumber(5));
+        int expectedResult = 5;
 
         SimpleNumber firstSimpleNumber = new SimpleNumber(1);
         Expression secondOperand = new Expression(new SimpleNumber(1), new SimpleNumber(3), Operator.ADD);
         Expression expression = new Expression(new Expression(firstSimpleNumber, new SimpleNumber(0), ADD), secondOperand, Operator.ADD);
 
-        int result1 = expression.calculate();
+        int result = expression.calculate();
 
-        Expression result = new Expression(new SimpleNumber(result1));
 
-        assertThat(result).isEqualTo(expectedExpression);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     // 1 2 + 3 4 + + => 3 7 + => 10
     @Test
     void returnsNewExpressionWhenAddingTwoExpressions() {
-        Expression expectedExpression = new Expression(new SimpleNumber(10));
 
+        int expectedResult = 10;
         Expression firstOperand = new Expression(new SimpleNumber(1), new SimpleNumber(2), Operator.ADD);
         Expression secondOperand = new Expression(new SimpleNumber(3), new SimpleNumber(4), Operator.ADD);
         Expression expression = new Expression(firstOperand, secondOperand, Operator.ADD);
 
-        int result1 = expression.calculate();
+        int result = expression.calculate();
 
-        Expression result = new Expression(new SimpleNumber(result1));
-
-        assertThat(result).isEqualTo(expectedExpression);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     // 4 1 2 + + 3 2 + +  ===> 4 (1 2 +) + (3 2 +) + ==>
@@ -99,17 +96,16 @@ public class CalculatorTest {
     @Test
     void returnNewExpressionWhenAddingSeveralExpressions() {
 
-        Expression expectedExpression = new Expression(new SimpleNumber(12));
+        int expectedResult = 12;
         Expression e1 = new Expression(new SimpleNumber(1), new SimpleNumber(2), ADD);
         Expression firstExpression = new Expression(new Expression(new SimpleNumber(4), new SimpleNumber(0), ADD), e1, ADD);
 
         Expression secondExpression = new Expression(new SimpleNumber(3), new SimpleNumber(2), ADD);
         Expression expression = new Expression(firstExpression, secondExpression, ADD);
 
-        int result1 = expression.calculate();
+        int result = expression.calculate();
 
-        Expression result = new Expression(new SimpleNumber(result1));
-        assertThat(result).isEqualTo(expectedExpression);
+        assertThat(result).isEqualTo(expectedResult);
     }
 
     // TODO : gestion du add entre expression et operand !!!
@@ -127,7 +123,6 @@ public class CalculatorTest {
 
         assertThat(result).isEqualTo(expectedExpression);
     }
-
 
 
     @ParameterizedTest
