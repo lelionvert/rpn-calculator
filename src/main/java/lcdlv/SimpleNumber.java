@@ -27,5 +27,4 @@ public class SimpleNumber implements Operand{
     public int hashCode() {
         return Objects.hash(value);
     }
-
 }

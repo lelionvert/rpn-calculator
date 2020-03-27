@@ -29,7 +29,6 @@ public class Expression implements Operand {
         return Objects.hash(firstOperand, secondOperand, operator);
     }
 
-
     @Override
     public String toString() {
         return "Expression{" +
